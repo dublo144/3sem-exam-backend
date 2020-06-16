@@ -1,7 +1,15 @@
 package entity;
 
-import javax.persistence.*;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.List;
+
+@AllArgsConstructor
+@RequiredArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "ingredients")
 public class Ingredient {
@@ -12,9 +20,14 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "amount")
-    private String amount;
+    @ManyToMany(mappedBy = "ingredientList")
+    private List<ShoppingList> shoppingLists;
 
+    @NonNull
+    @Column(name = "amount")
+    private int amount;
+
+    @NonNull
     @Column(name = "name")
     private String name;
 }

@@ -41,6 +41,13 @@ public class User implements Serializable {
   @JoinColumn(name = "user_id")
   private List<MenuPlan> menuPlans;
 
+  @OneToMany(
+          mappedBy = "user",
+          cascade = CascadeType.PERSIST,
+          orphanRemoval = true
+  )
+  private List<ShoppingList> shoppingLists = new ArrayList<>();
+
   @Column(name="user_salt")
   private String userSalt;
 

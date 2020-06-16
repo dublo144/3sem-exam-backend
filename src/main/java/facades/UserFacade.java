@@ -1,15 +1,16 @@
 package facades;
 
-import dtos.MenuPlanDto;
-import dtos.UserDto;
-import entity.MenuPlan;
-import entity.Role;
-import entity.User;
+import business.RecipeBusiness;
+import dtos.*;
+import entity.*;
+
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import errorhandling.AuthenticationException;
 import errorhandling.UserException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class UserFacade {
   
     private static EntityManagerFactory emf;
     private static UserFacade instance;
+    private RecipeBusiness recipeBusiness = new RecipeBusiness();
     
     private UserFacade(){}
     
@@ -131,4 +133,23 @@ public class UserFacade {
         }
         return menuPlanDtos;
     }
+
+//    public UserDto createShoppingList (String username, MenuPlanDto menuPlanDto) throws UserException, IOException {
+//        EntityManager em = emf.createEntityManager();
+//        User user;
+//        user = em.find(User.class, username);
+//        if (user == null) {
+//            // TODO EDIT
+//            throw new UserException(UserException.IN_USE_USERNAME);
+//        }
+//        List<RecipeDetailsDto> recipeDTOS = new ArrayList<>();
+//        for (DayPlanDto dayPlan : menuPlanDto.getDayPlans()) {
+//            Long recipeId = dayPlan.getRecipeId();
+//            recipeDTOS.add(recipeBusiness.getRecipeDetails(recipeId));
+//        }
+//        List<IngredientDto> ingredientDtos = new ArrayList<>();
+//        for (RecipeDetailsDto recipeDTO : recipeDTOS) {
+//            ingredientDtos.addAll(recipeDTO.getIngredients());
+//        }
+//    }
 }
