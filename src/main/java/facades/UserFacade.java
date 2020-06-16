@@ -1,5 +1,8 @@
 package facades;
 
+import dtos.MenuPlanDto;
+import dtos.UserDto;
+import entity.MenuPlan;
 import entity.Role;
 import entity.User;
 import javax.persistence.EntityManager;
@@ -66,6 +69,69 @@ public class UserFacade {
             em.close();
         }
         return user;
+    }
+
+    public Role getUserRole(String rolename){
+        EntityManager em = emf.createEntityManager();
+        Role role;
+        try {
+            role = em.find(Role.class, rolename);
+            if (role == null){
+                role = new Role(rolename);
+                em.getTransaction().begin();
+                em.persist(role);
+                em.getTransaction().commit();
+            }
+        } finally {
+            em.close();
+        }
+        return role;
+    }
+
+    public UserDto createMenuPlan(String username, MenuPlanDto menuPlanDto) throws UserException {
+        EntityManager em = emf.createEntityManager();
+        User user;
+        MenuPlan menuPlan;
+        try {
+            user = em.find(User.class, username);
+            if (user == null) {
+                // TODO EDIT
+                throw new UserException(UserException.IN_USE_USERNAME);
+            }
+            menuPlan = new MenuPlan(menuPlanDto);
+            user.addMenuPlan(menuPlan);
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new UserDto(user);
+    }
+
+    public UserDto removeMenuPlan (String username, Long id) throws UserException {
+        EntityManager em = emf.createEntityManager();
+        User user;
+        MenuPlan menuPlan;
+        try {
+            user = em.find(User.class, username);
+            if (user == null) {
+                // TODO EDIT
+                throw new UserException(UserException.IN_USE_USERNAME);
+            }
+            menuPlan = em.find(MenuPlan.class, id);
+            if (menuPlan == null) {
+                // TODO EDIT
+                throw new UserException(UserException.IN_USE_USERNAME);
+            }
+            user.removeMenuPlan(menuPlan);
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new UserDto(user);
     }
 
 }
