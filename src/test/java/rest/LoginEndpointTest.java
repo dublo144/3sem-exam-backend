@@ -6,6 +6,7 @@ import errorhandling.UserException;
 import io.restassured.http.ContentType;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
@@ -26,8 +27,8 @@ public class LoginEndpointTest extends BaseResourceTest {
         Role role = new Role("user");
         List<Role> userRoles = new ArrayList<>();
         userRoles.add(role);
-        User user = new User("JpaLover", "LoveJpa");
-        user.setRoleList(userRoles);
+        u1 = new User("JpaLover", "LoveJpa");
+        u1.setRoleList(userRoles);
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.createNamedQuery("DayPlan.deleteAllRows").executeUpdate();
@@ -35,7 +36,7 @@ public class LoginEndpointTest extends BaseResourceTest {
         entityManager.createNamedQuery("User.deleteAllRows").executeUpdate();
         entityManager.createNamedQuery("Roles.deleteAllRows").executeUpdate();
         entityManager.persist(role);
-        entityManager.persist(user);
+        entityManager.persist(u1);
         entityManager.getTransaction().commit();
     }
 
@@ -68,7 +69,7 @@ public class LoginEndpointTest extends BaseResourceTest {
 
     @Test
     public void testCreate_with_duplicate_username() {
-        String payload = "{\"username\":\"testUser\",\"password\":\"whatever password goes here \"}";
+        String payload = "{\"username\":\"JpaLover\",\"password\":\"whatever password goes here \"}";
         given()
                 .contentType(ContentType.JSON)
                 .body(payload)
