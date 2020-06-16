@@ -3,18 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>codes.madsbrandt</groupId>
-    <artifactId>backend-starter</artifactId>
+    <artifactId>3sem-exam-backend</artifactId>
     <version>1</version>
     <packaging>war</packaging>
 
-    <name>backend-starter</name>
+    <name>3sem-exam-backend</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <remote.server>https://madsbrandt.codes/manager/text</remote.server>
-        <sonar.projectKey>backend-starter</sonar.projectKey>
+        <sonar.projectKey>3sem-exam-backend</sonar.projectKey>
         <sonar.organization>dublo144</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.login>6cd272533b1036ac744fec1d1b228832f32a8268</sonar.login>
@@ -167,6 +167,27 @@
                     <password>${remote.password}</password>
                     <update>true</update>
                 </configuration>
+            </plugin>
+
+            <!-- Plugin for code coverage in sonarcloud -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.4</version>
+                <executions>
+                    <execution>
+                        <id>agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!--This is used to enable @BeforeAll etc used in jUnit 5 -->
