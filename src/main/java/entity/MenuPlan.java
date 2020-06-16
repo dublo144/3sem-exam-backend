@@ -19,7 +19,7 @@ public class MenuPlan {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     private Long id;
 
@@ -27,7 +27,7 @@ public class MenuPlan {
     private int weekNumber;
 
     @NonNull
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JoinColumn(name = "menu_plan_id")
     private List<DayPlan> dayPlans;
 

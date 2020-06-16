@@ -12,11 +12,12 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "dayplans")
+@NamedQuery(name = "DayPlan.deleteAllRows", query = "DELETE FROM DayPlan")
 public class DayPlan {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     private Long id;
 

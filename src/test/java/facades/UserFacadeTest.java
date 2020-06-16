@@ -37,7 +37,6 @@ public class UserFacadeTest {
         dayPlanDto = new DayPlanDto("Monday", new Date(), 1L, 4);
         menuPlanDto = new MenuPlanDto(30, Arrays.asList(dayPlanDto));
         menuPlan = new MenuPlan(menuPlanDto);
-        u1.addMenuPlan(menuPlan);
     }
 
     @BeforeEach
@@ -45,11 +44,13 @@ public class UserFacadeTest {
         EntityManager em = entityManagerFactory.createEntityManager();
         try {
             em.getTransaction().begin();
+            em.createNamedQuery("DayPlan.deleteAllRows").executeUpdate();
+            em.createNamedQuery("MenuPlan.deleteAllRows").executeUpdate();
             em.createNamedQuery("User.deleteAllRows").executeUpdate();
             em.createNamedQuery("Roles.deleteAllRows").executeUpdate();
-            em.createNamedQuery("MenuPlan.deleteAllRows").executeUpdate();
             em.persist(u1);
             em.persist(u2);
+            u1.addMenuPlan(menuPlan);
             em.getTransaction().commit();
         } finally {
             em.close();

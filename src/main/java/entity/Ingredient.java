@@ -9,6 +9,7 @@ public class Ingredient {
 
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "amount")
