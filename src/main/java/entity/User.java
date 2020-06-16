@@ -6,10 +6,16 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.mindrot.jbcrypt.BCrypt;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
+@NamedQuery(name = "User.deleteAllRows", query = "DELETE FROM User")
 public class User implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -28,7 +34,7 @@ public class User implements Serializable {
   @JoinTable(name = "user_roles", joinColumns = {
     @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {
     @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.PERSIST)
   private List<Role> roleList = new ArrayList();
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -67,32 +73,17 @@ public class User implements Serializable {
     this.menuPlans = menuPlans;
   }
 
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
-
-  public String getUserPass() {
-    return this.userPass;
-  }
-
-  public void setUserPass(String userPass) {
-    this.userPass = userPass;
-  }
-
-  public List<Role> getRoleList() {
-    return roleList;
-  }
-
-  public void setRoleList(List<Role> roleList) {
-    this.roleList = roleList;
-  }
-
   public void addRole(Role userRole) {
     roleList.add(userRole);
   }
+
+  public void addMenuPlan(MenuPlan menuPlan) {
+    if (this.menuPlans == null) {
+      this.menuPlans = new ArrayList<>();
+    }
+    menuPlans.add(menuPlan);
+  }
+
+  public void removeMenuPlan(MenuPlan menuPlan) { menuPlans.remove(menuPlan); }
 
 }

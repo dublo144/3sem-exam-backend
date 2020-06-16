@@ -1,5 +1,6 @@
 package entity;
 
+import dtos.DayPlanDto;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,4 +35,10 @@ public class DayPlan {
     @Column(name = "servings")
     private Integer servings;
 
+    public DayPlan (DayPlanDto dto) {
+        this.weekDay = dto.getWeekDay();
+        this.date = dto.getDate();
+        this.recipeId = dto.getRecipeId();
+        this.servings = dto.getServings();
+    }
 }
