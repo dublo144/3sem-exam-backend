@@ -4,7 +4,7 @@ import dtos.DayPlanDto;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
 
 @RequiredArgsConstructor
 @NoArgsConstructor
@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "dayplans")
 @NamedQuery(name = "DayPlan.deleteAllRows", query = "DELETE FROM DayPlan")
-public class DayPlan {
+public class DayPlan implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

@@ -1,16 +1,16 @@
 package facades;
 
 import business.RecipeBusiness;
-import dtos.*;
-import entity.*;
-
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import dtos.MenuPlanDto;
+import dtos.UserDto;
+import entity.MenuPlan;
+import entity.Role;
+import entity.User;
 import errorhandling.AuthenticationException;
 import errorhandling.UserException;
 
-import java.io.IOException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,6 @@ public class UserFacade {
   
     private static EntityManagerFactory emf;
     private static UserFacade instance;
-    private RecipeBusiness recipeBusiness = new RecipeBusiness();
     
     private UserFacade(){}
     
@@ -110,6 +109,7 @@ public class UserFacade {
                 throw new UserException(UserException.IN_USE_USERNAME);
             }
             user.removeMenuPlan(menuPlan);
+            em.remove(menuPlan);
             em.getTransaction().begin();
             em.persist(user);
             em.getTransaction().commit();

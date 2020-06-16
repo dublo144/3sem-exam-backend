@@ -37,7 +37,7 @@ public class User implements Serializable {
   @ManyToMany(cascade = CascadeType.PERSIST)
   private List<Role> roleList = new ArrayList();
 
-  @OneToMany(cascade = CascadeType.PERSIST)
+  @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
   @JoinColumn(name = "user_id")
   private List<MenuPlan> menuPlans;
 

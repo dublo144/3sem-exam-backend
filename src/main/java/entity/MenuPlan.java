@@ -5,6 +5,7 @@ import dtos.MenuPlanDto;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "menu_plans")
 @NamedQuery(name = "MenuPlan.deleteAllRows", query = "DELETE FROM MenuPlan")
-public class MenuPlan {
+public class MenuPlan implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -27,7 +28,7 @@ public class MenuPlan {
     private int weeknumber;
 
     @NonNull
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "menu_plan_id")
     private List<DayPlan> dayPlans;
 

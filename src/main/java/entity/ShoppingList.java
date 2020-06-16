@@ -1,15 +1,12 @@
 package entity;
 
-import dtos.DayPlanDto;
 import dtos.IngredientDto;
-import dtos.MenuPlanDto;
-import dtos.RecipeDetailsDto;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "shopping_lists")
 @NamedQuery(name = "ShoppingList.deleteAllRows", query = "DELETE FROM ShoppingList ")
-public class ShoppingList {
+public class ShoppingList implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

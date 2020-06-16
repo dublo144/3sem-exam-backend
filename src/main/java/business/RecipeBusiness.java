@@ -6,18 +6,15 @@ import com.google.gson.reflect.TypeToken;
 import dtos.IngredientDto;
 import dtos.RecipeDTO;
 import dtos.RecipeDetailsDto;
-import entity.Ingredient;
 import utils.HttpUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RecipeBusiness {
 
     private final Gson gson = new Gson();
-    private static final List<String> LIST_OF_RECIPE_PROPS = Arrays.asList("id", "name", "prepTime", "directions", "category", "ingredients");
 
     public List<RecipeDTO> getAllRecipes() throws IOException {
         String recipesJson = HttpUtils.fetchData("https://cphdat.dk/recipes");
