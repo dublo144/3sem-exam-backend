@@ -16,4 +16,6 @@ public class RecipeDetailsDto {
     private String category;
     private String[] directions;
     private List<IngredientDto> ingredients;
+    private String name;
+    private int prepTime;
 }
