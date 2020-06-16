@@ -22,24 +22,24 @@ public class DayPlan {
     private Long id;
 
     @NonNull
-    private String weekDay;
-
-    @NonNull
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private String weekday;
 
     @NonNull
     @Column(name = "recipe_id")
     private Long recipeId;
 
     @NonNull
+    @Column(name = "recipe_name")
+    private String recipeName;
+
+    @NonNull
     @Column(name = "servings")
-    private Integer servings;
+    private int servings;
 
     public DayPlan (DayPlanDto dto) {
-        this.weekDay = dto.getWeekDay();
-        this.date = dto.getDate();
+        this.weekday = dto.getWeekday();
         this.recipeId = dto.getRecipeId();
+        this.recipeName = dto.getRecipeName();
         this.servings = dto.getServings();
     }
 }

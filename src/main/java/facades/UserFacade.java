@@ -71,23 +71,6 @@ public class UserFacade {
         return user;
     }
 
-    public Role getUserRole(String rolename){
-        EntityManager em = emf.createEntityManager();
-        Role role;
-        try {
-            role = em.find(Role.class, rolename);
-            if (role == null){
-                role = new Role(rolename);
-                em.getTransaction().begin();
-                em.persist(role);
-                em.getTransaction().commit();
-            }
-        } finally {
-            em.close();
-        }
-        return role;
-    }
-
     public UserDto createMenuPlan(String username, MenuPlanDto menuPlanDto) throws UserException {
         EntityManager em = emf.createEntityManager();
         User user;
@@ -134,4 +117,18 @@ public class UserFacade {
         return new UserDto(user);
     }
 
+    public List<MenuPlanDto> getMenuPlansForUser (String username) throws UserException {
+        EntityManager em = emf.createEntityManager();
+        User user;
+        List<MenuPlanDto> menuPlanDtos = new ArrayList<>();
+        user = em.find(User.class, username);
+        if (user == null) {
+            // TODO EDIT
+            throw new UserException(UserException.IN_USE_USERNAME);
+        }
+        for (MenuPlan menuPlan : user.getMenuPlans()) {
+            menuPlanDtos.add(new MenuPlanDto(menuPlan));
+        }
+        return menuPlanDtos;
+    }
 }

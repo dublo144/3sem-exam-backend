@@ -6,7 +6,6 @@ import errorhandling.UserException;
 import io.restassured.http.ContentType;
 import org.glassfish.grizzly.http.util.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.persistence.EntityManager;
@@ -20,7 +19,6 @@ import static org.hamcrest.Matchers.notNullValue;
 public class LoginEndpointTest extends BaseResourceTest {
 
     private static User u1, u2;
-    private String nonExistingUsername = "nonexistinguser";
 
     @BeforeEach
     public void setUp() {

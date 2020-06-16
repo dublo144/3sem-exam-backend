@@ -25,8 +25,7 @@ public class RecipeResource {
     responses = {
         @ApiResponse(
                 content = @Content(mediaType = "application/json", schema = @Schema(implementation = RecipeDTO.class))),
-        @ApiResponse(responseCode = "200", description = "The requested recipe"),
-        @ApiResponse(responseCode = "403", description = "Not authenticated - do login")})
+        @ApiResponse(responseCode = "200", description = "The requested recipe")})
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllRecipes() throws IOException {

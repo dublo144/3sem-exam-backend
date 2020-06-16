@@ -4,8 +4,6 @@ package dtos;
 import entity.DayPlan;
 import lombok.*;
 
-import java.util.Date;
-
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Getter
@@ -13,22 +11,22 @@ import java.util.Date;
 public class DayPlanDto {
     private Long id;
     @NonNull
-    private String weekDay;
-
-    @NonNull
-    private Date date;
+    private String weekday;
 
     @NonNull
     private Long recipeId;
 
     @NonNull
-    private int servings;
+    private String recipeName;
+
+    @NonNull
+    private Integer servings;
 
     public DayPlanDto (DayPlan dayPlan) {
         this.id = dayPlan.getId();
-        this.weekDay = dayPlan.getWeekDay();
-        this.date = dayPlan.getDate();
+        this.weekday = dayPlan.getWeekday();
         this.recipeId = dayPlan.getRecipeId();
+        this.recipeName = dayPlan.getRecipeName();
         this.servings = dayPlan.getServings();
     }
 }

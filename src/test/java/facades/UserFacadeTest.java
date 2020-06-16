@@ -34,7 +34,7 @@ public class UserFacadeTest {
         userFacade = UserFacade.getUserFacade(entityManagerFactory);
         u1 = new User("test1", "test1");
         u2 = new User("jpaLover", "loveJpa");
-        dayPlanDto = new DayPlanDto("Monday", new Date(), 1L, 4);
+        dayPlanDto = new DayPlanDto("Monday", 1L, "SomeName", 4);
         menuPlanDto = new MenuPlanDto(30, Arrays.asList(dayPlanDto));
         menuPlan = new MenuPlan(menuPlanDto);
     }

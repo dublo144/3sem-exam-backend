@@ -16,13 +16,14 @@ public class MenuPlanDto {
     private Long id;
 
     @NonNull
-    private int weekNumber;
+    private int weeknumber;
 
     @NonNull
     private List<DayPlanDto> dayPlans;
 
     public MenuPlanDto (MenuPlan menuPlan) {
         this.id = menuPlan.getId();
+        this.weeknumber = menuPlan.getWeeknumber();
         this.dayPlans = new ArrayList<>();
         for (DayPlan dayPlan : menuPlan.getDayPlans()) {
             this.dayPlans.add(new DayPlanDto(dayPlan));

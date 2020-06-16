@@ -23,8 +23,8 @@ public class MenuPlan {
     @Basic(optional = false)
     private Long id;
 
-    @Column(name = "weekNumber")
-    private int weekNumber;
+    @Column(name = "weeknumber")
+    private int weeknumber;
 
     @NonNull
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -33,6 +33,7 @@ public class MenuPlan {
 
     public MenuPlan (MenuPlanDto dto) {
         this.dayPlans = new ArrayList<>();
+        this.weeknumber = dto.getWeeknumber();
         for (DayPlanDto dayPlanDto : dto.getDayPlans()) {
             this.dayPlans.add(new DayPlan(dayPlanDto));
         }
