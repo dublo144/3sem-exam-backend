@@ -5,12 +5,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class RecipeDTO {
+public class RecipeDetailsDto {
     private Long id;
-    private String name;
-    private int prepTime;
+    private String category;
+    private String[] directions;
+    private List<IngredientDto> ingredients;
 }
