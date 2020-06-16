@@ -23,6 +23,9 @@ public class MenuPlan {
     @Basic(optional = false)
     private Long id;
 
+    @Column(name = "weekNumber")
+    private int weekNumber;
+
     @NonNull
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "menu_plan_id")

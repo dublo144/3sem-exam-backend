@@ -16,6 +16,9 @@ public class MenuPlanDto {
     private Long id;
 
     @NonNull
+    private int weekNumber;
+
+    @NonNull
     private List<DayPlanDto> dayPlans;
 
     public MenuPlanDto (MenuPlan menuPlan) {

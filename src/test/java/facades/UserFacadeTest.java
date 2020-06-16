@@ -35,7 +35,7 @@ public class UserFacadeTest {
         u1 = new User("test1", "test1");
         u2 = new User("jpaLover", "loveJpa");
         dayPlanDto = new DayPlanDto("Monday", new Date(), 1L, 4);
-        menuPlanDto = new MenuPlanDto(Arrays.asList(dayPlanDto));
+        menuPlanDto = new MenuPlanDto(30, Arrays.asList(dayPlanDto));
         menuPlan = new MenuPlan(menuPlanDto);
         u1.addMenuPlan(menuPlan);
     }

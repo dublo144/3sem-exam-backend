@@ -43,6 +43,7 @@ public class ApplicationConfig extends Application {
         resources.add(security.RolesAllowedFilter.class);
         resources.add(AuthenticationExceptionMapper.class);
         resources.add(UserExceptionMapper.class);
+        resources.add(RecipeResource.class);
     }
 
 }
