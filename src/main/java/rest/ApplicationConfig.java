@@ -37,11 +37,11 @@ public class ApplicationConfig extends Application {
         resources.add(errorhandling.GenericExceptionMapper.class);
         resources.add(security.JWTAuthenticationFilter.class);
         resources.add(LoginEndpoint.class);
+        resources.add(RecipeResource.class);
+        resources.add(MenuPlanResource.class);
         resources.add(security.RolesAllowedFilter.class);
         resources.add(AuthenticationExceptionMapper.class);
         resources.add(UserExceptionMapper.class);
-        resources.add(RecipeResource.class);
-        resources.add(MenuPlanResource.class);
     }
 
 }
