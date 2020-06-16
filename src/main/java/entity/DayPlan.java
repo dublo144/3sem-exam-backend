@@ -3,6 +3,7 @@ package entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @RequiredArgsConstructor
 @NoArgsConstructor
@@ -17,6 +18,13 @@ public class DayPlan {
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Basic(optional = false)
     private Long id;
+
+    @NonNull
+    private String weekDay;
+
+    @NonNull
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
     @NonNull
     @Column(name = "recipe_id")
