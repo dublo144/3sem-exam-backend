@@ -18,16 +18,22 @@ public class User implements Serializable {
   @NotNull
   @Column(name = "user_name", length = 25)
   private String userName;
+
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 255)
   @Column(name = "user_pass")
   private String userPass;
+
   @JoinTable(name = "user_roles", joinColumns = {
     @JoinColumn(name = "user_name", referencedColumnName = "user_name")}, inverseJoinColumns = {
     @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
   @ManyToMany
   private List<Role> roleList = new ArrayList();
+
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "user_id")
+  private List<MenuPlan> menuPlans;
 
   @Column(name="user_salt")
   private String userSalt;
@@ -55,6 +61,11 @@ public class User implements Serializable {
     this.userPass = BCrypt.hashpw(userPass, this.userSalt);
   }
 
+  public User (String userName, String userPass, List<MenuPlan> menuPlans) {
+    this.userName = userName;
+    this.userPass = userPass;
+    this.menuPlans = menuPlans;
+  }
 
   public String getUserName() {
     return userName;
