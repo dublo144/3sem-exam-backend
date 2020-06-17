@@ -32,13 +32,13 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(org.glassfish.jersey.server.wadl.internal.WadlResource.class);
-        resources.add(CorsRequestFilter.class);
-        resources.add(CorsResponseFilter.class);
+        resources.add(cors.CorsRequestFilter.class);
+        resources.add(cors.CorsResponseFilter.class);
         resources.add(errorhandling.GenericExceptionMapper.class);
         resources.add(security.JWTAuthenticationFilter.class);
-        resources.add(LoginEndpoint.class);
-        resources.add(RecipeResource.class);
-        resources.add(MenuPlanResource.class);
+        resources.add(rest.LoginEndpoint.class);
+        resources.add(rest.RecipeResource.class);
+        resources.add(rest.MenuPlanResource.class);
         resources.add(security.RolesAllowedFilter.class);
         resources.add(AuthenticationExceptionMapper.class);
         resources.add(UserExceptionMapper.class);

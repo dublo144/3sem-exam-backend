@@ -42,7 +42,7 @@ public class LoginEndpoint {
   private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
   public static final UserFacade USER_FACADE = UserFacade.getUserFacade(EMF);
 
-  @Operation(summary = "Log in to an account, given a username and a corresponding password",
+  @Operation(summary = "Log in to an account, given a username and a password",
     tags = {"login"},
     responses = {
     @ApiResponse(
